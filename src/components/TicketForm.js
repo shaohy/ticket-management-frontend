@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './TicketForm.css'; // Import the CSS file for styling
 
 function TicketForm({ onCreate, onUpdate, editingTicket, setEditingTicket }) {
     const [description, setDescription] = useState('');
@@ -33,29 +34,31 @@ function TicketForm({ onCreate, onUpdate, editingTicket, setEditingTicket }) {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
+        <form className="ticket-form" onSubmit={handleSubmit}>
+            <div className="form-group">
                 <label>Description</label>
-                <input 
-                    type="text" 
-                    value={description} 
-                    onChange={(e) => setDescription(e.target.value)} 
-                    required 
+                <input
+                    type="text"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    required
                 />
             </div>
-            <div>
+            <div className="form-group">
                 <label>Status</label>
-                <input 
-                    type="text" 
-                    value={status} 
-                    onChange={(e) => setStatus(e.target.value)} 
-                    required 
+                <input
+                    type="text"
+                    value={status}
+                    onChange={(e) => setStatus(e.target.value)}
+                    required
                 />
             </div>
-            <button type="submit">
-                {editingTicket ? 'Update Ticket' : 'Create Ticket'}
-            </button>
-            {editingTicket && <button onClick={handleCancel}>Cancel</button>}
+            <div className="form-actions">
+                <button type="submit">
+                    {editingTicket ? 'Update Ticket' : 'Create Ticket'}
+                </button>
+                {editingTicket && <button type="button" onClick={handleCancel}>Cancel</button>}
+            </div>
         </form>
     );
 }
